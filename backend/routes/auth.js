@@ -9,11 +9,11 @@ const { body, validationResult } = require("express-validator");
 const bcrypt = require('bcrypt');
 
 //JWT Token to authenticate users
-var jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 // Feteching user from jwt token
-var fetchUser = require('../middleware/fetchuser');
+const fetchuser = require('../middleware/fetchuser');
 
-JWT_SECRET='your_jwt_secret'
+const JWT_SECRET='your_jwt_secret'
 
 // ROUTE 1: Create a User using: POST "/api/auth". No login required
 router.post('/createuser', [
@@ -21,16 +21,17 @@ router.post('/createuser', [
     body('email', 'Enter a valid email').isEmail(),
     body('password', 'Password must be atleast 5 characters').isLength({ min: 5 })
 ], async (req, res) => {
+    let success = false;
     //If there are errors, return Bad request and the errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
+        return res.status(400).json({success, errors: errors.array() });
     }
     try {
         //check whether the user with this email exists already
         let user = await User.findOne({ email: req.body.email });
         if (user) {
-            return res.status(400).json({ error: "Sorry a user with this email already exists" });
+            return res.status(400).json({success, error: "Sorry a user with this email already exists" });
         }
         //hashing the password
         const secPass = await bcrypt.hash(req.body.password, 10);
@@ -47,12 +48,9 @@ router.post('/createuser', [
                 id: user.id
             }
         }
-
         const authtoken = jwt.sign(data, JWT_SECRET);
-        console.log(authtoken);
-        // return the user after saving it to the database using res.json()
-        //res.json(user)
-        res.json({ authtoken })
+        success = true;
+        res.json({success, authtoken })
     }
     // catch block to handle errors
     catch (error) {
@@ -66,7 +64,7 @@ router.post('/login', [
     body('email', 'Enter a valid email').isEmail(),
     body('password', 'Password cannot be blank').exists()
 ], async (req, res) => {
-    //If there are errors, return Bad request and the errors
+    let success = false;
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
@@ -76,52 +74,40 @@ router.post('/login', [
     try {
         let user =await User.findOne({ email });
         if (!user) {
-            return res.status(400).json({ error: "Please try to login with correct credentials" });
+            success = false;
+            return res.status(400).json({success, error: "Please try to login with correct credentials" });
         }
         const passwordCompare = await bcrypt.compare(password, user.password);
         if (!passwordCompare) {
-            return res.status(400).json({ error: "Please try to login with correct credentials" });
+            success = false;
+            return res.status(400).json({success, error: "Please try to login with correct credentials" });
         }
-        
         const data = {
             user: {
                 id: user.id
             }
         }
-        
         const authtoken = jwt.sign(data, JWT_SECRET);
-        console.log(authtoken);
-        // return the user after saving it to the database using res.json()
-        //res.json(user)
-        res.json({ authtoken })
-        
+        success = true;
+        res.json({success, authtoken }) 
     }
     catch (error) {
         console.error(error.message);
         res.status(500).send("Inernal Server Error")
     }
 }) 
-//ROUTE 3: Get logged in User Dtails using: POST "/api/auth/getuser". Login required
-router.post('/getuser', fetchUser, async (req, res) => {
-    //If there are errors, return Bad request and the errors
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
-    }
 
+// ROUTE 3: Get loggedin User details using: POST "/api/auth/getuser". Login required
+router.post('/getuser', fetchuser, async (req, res) => {
   try {
-    // request.user is getting fetched from Middleware after token authentication
-    userId = req.user.id;
-    const user = await User.findById(userId).select("-password");
+    const userID = req.user.id;
+    const user = await User.findById(userID).select("-password")
     res.send(user);
-}
-catch (error) {
+  } catch (error) {
     console.error(error.message);
     res.status(500).send("Inernal Server Error")
-    }
+  }
 })
 
 
-
-// Exporting router to index.js 
 module.exports = router;
