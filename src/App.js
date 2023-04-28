@@ -37,7 +37,7 @@ export default function App() {
   return (
     <>
       <NoteState>
-        <Router  basename="/NotesKeeper-React">
+        <Router basename="/NotesKeeper-React">
           <Navbar showAlert={showAlert} mode={mode} toggleMode={toggleMode}/>
           <Alert alert={alert} />
           <div className="container">
