@@ -51,8 +51,6 @@ const onChange = (e) => {
   return (
     <>
       <AddNote showAlert={props.showAlert} />
-
-      
       
       <button ref={ref} type="button" className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">Launch demo modal</button>
       
