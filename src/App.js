@@ -37,7 +37,7 @@ export default function App() {
   return (
     <>
       <NoteState>
-        <Router>
+        <Router  basename="/NotesKeeper-React">
           <Navbar showAlert={showAlert} mode={mode} toggleMode={toggleMode}/>
           <Alert alert={alert} />
           <div className="container">
@@ -46,10 +46,7 @@ export default function App() {
               <Route path="/home" element={<Home showAlert={showAlert} />} />
               <Route path="/about" element={<About showAlert={showAlert} />} />
               <Route path="/login" element={<Login showAlert={showAlert} />} />
-              <Route
-                path="/signup"
-                element={<Signup showAlert={showAlert} />}
-              />
+              <Route path="/signup" element={<Signup showAlert={showAlert} />}/>
             </Routes>
           </div>
         </Router>
