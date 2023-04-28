@@ -15,7 +15,9 @@ export default function Notes(props) {
     }
     else {
       navigate("/login");
+      
     }
+    // eslint-disable-next-line
   }, []);
 
   const ref = useRef(null);
