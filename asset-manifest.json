@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/NotesKeeper-React/static/css/main.598a6723.css",
-    "main.js": "/NotesKeeper-React/static/js/main.aeadbf39.js",
-    "index.html": "/NotesKeeper-React/index.html",
-    "main.598a6723.css.map": "/NotesKeeper-React/static/css/main.598a6723.css.map",
-    "main.aeadbf39.js.map": "/NotesKeeper-React/static/js/main.aeadbf39.js.map"
+    "main.css": "/NotesKeeper-ReactApp/static/css/main.598a6723.css",
+    "main.js": "/NotesKeeper-ReactApp/static/js/main.aeadbf39.js",
+    "index.html": "/NotesKeeper-ReactApp/index.html",
+    "main.598a6723.css.map": "/NotesKeeper-ReactApp/static/css/main.598a6723.css.map",
+    "main.aeadbf39.js.map": "/NotesKeeper-ReactApp/static/js/main.aeadbf39.js.map"
   },
   "entrypoints": [
     "static/css/main.598a6723.css",
