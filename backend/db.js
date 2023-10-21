@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const mongoUri = "mongodb://127.0.0.1:27017/noteskeeper";
+const mongoUri = "mongodb+srv://rahulrps447:rahulrps447@cluster0.pjjrtyv.mongodb.net/NotesKeeper";
 
 mongoose.set("strictQuery", false);
 const connecttoMongo = () => {
