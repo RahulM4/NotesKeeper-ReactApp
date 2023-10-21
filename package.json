@@ -1,6 +1,6 @@
 {
-  "homepage": "https://RahulM4.github.io/NotesKeeper-React",
-  "name": "keepnotes",
+  "homepage": "https://rahulm4.github.io/NotesKeeper-ReactApp/",
+  "name": "noteskeeper-reactapp",
   "version": "0.1.0",
   "private": false,
   "dependencies": {
