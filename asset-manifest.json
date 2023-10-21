@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/NotesKeeper-React/static/css/main.598a6723.css",
-    "main.js": "/NotesKeeper-React/static/js/main.efb74553.js",
+    "main.js": "/NotesKeeper-React/static/js/main.aeadbf39.js",
     "index.html": "/NotesKeeper-React/index.html",
     "main.598a6723.css.map": "/NotesKeeper-React/static/css/main.598a6723.css.map",
-    "main.efb74553.js.map": "/NotesKeeper-React/static/js/main.efb74553.js.map"
+    "main.aeadbf39.js.map": "/NotesKeeper-React/static/js/main.aeadbf39.js.map"
   },
   "entrypoints": [
     "static/css/main.598a6723.css",
-    "static/js/main.efb74553.js"
+    "static/js/main.aeadbf39.js"
   ]
 }
